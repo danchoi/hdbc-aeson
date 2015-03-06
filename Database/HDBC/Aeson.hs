@@ -8,12 +8,11 @@ import qualified Data.Text.Encoding as T
 
 -- | Run a SQL query and return a value that can be cast via 
 -- a FromJSON instance.
-queryJ :: (IConnection a, FromJSON b)
-       => a
-       -> Statement
+queryJ :: FromJSON a
+       => Statement
        -> [SqlValue]
-       -> IO b
-queryJ conn stmt vs = do
+       -> IO a
+queryJ stmt vs = do
     _ <- execute stmt vs
     rows <- fetchAllRowsMap' stmt
     let result = fromJSON . toJSON $ rows
@@ -29,7 +28,7 @@ quickQueryJ :: (IConnection a, FromJSON b)
             -> IO b
 quickQueryJ conn query xs = do
     stmt <- prepare conn query
-    queryJ conn stmt xs
+    queryJ stmt xs
 
 
 instance ToJSON SqlValue where
