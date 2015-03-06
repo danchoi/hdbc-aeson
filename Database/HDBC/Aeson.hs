@@ -1,5 +1,5 @@
 {-# LANGUAGE OverloadedStrings, MultiParamTypeClasses #-} 
-module HDBC.Aeson where
+module Database.HDBC.Aeson where
 import Data.Aeson
 import Data.Convertible 
 import Database.HDBC

@@ -2,7 +2,7 @@
 -- documentation, see http://haskell.org/cabal/users-guide/
 
 name:                hdbc-aeson
-version:             0.1.0.0
+version:             0.1.1.0
 synopsis:            Deserialize from HDBC rows to FromJSON instances
 description:         Deserialize from HDBC rows to FromJSON instances 
 homepage:            https://github.com/danchoi/hdbc-aeson
@@ -17,7 +17,7 @@ build-type:          Simple
 cabal-version:       >=1.10
 
 library
-  exposed-modules:     HDBC.Aeson
+  exposed-modules:     Database.HDBC.Aeson
   -- other-modules:       
   -- other-extensions:    
   build-depends:       base >=4.6 && <4.8
