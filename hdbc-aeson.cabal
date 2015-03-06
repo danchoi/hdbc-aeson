@@ -4,7 +4,7 @@
 name:                hdbc-aeson
 version:             0.1.0.0
 synopsis:            Deserialize from HDBC rows to FromJSON instances
--- description:         
+description:         Deserialize from HDBC rows to FromJSON instances 
 homepage:            https://github.com/danchoi/hdbc-aeson
 license:             MIT
 license-file:        LICENSE
