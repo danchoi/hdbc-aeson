@@ -8,11 +8,11 @@ import qualified Data.Text.Encoding as T
 
 -- | Run a SQL query and return a value that can be cast via 
 -- a FromJSON instance.
-queryJ :: FromJSON a
+executeJ :: FromJSON a
        => Statement
        -> [SqlValue]
        -> IO a
-queryJ stmt vs = do
+executeJ stmt vs = do
     _ <- execute stmt vs
     rows <- fetchAllRowsMap' stmt
     let result = fromJSON . toJSON $ rows
@@ -28,8 +28,7 @@ quickQueryJ :: (IConnection a, FromJSON b)
             -> IO b
 quickQueryJ conn query xs = do
     stmt <- prepare conn query
-    queryJ stmt xs
-
+    executeJ stmt xs
 
 instance ToJSON SqlValue where
     toJSON (SqlByteString x) = String . T.decodeUtf8 $ x
@@ -39,6 +38,7 @@ instance ToJSON SqlValue where
     toJSON (SqlDouble x) = Number $ realToFrac x
     toJSON (SqlBool x) = Bool x
     toJSON (SqlLocalTime x) = String . T.pack . show $ x
+    toJSON (SqlZonedTime x) = String . T.pack . show $ x
     toJSON SqlNull = Null
     toJSON x = error $ "Please implement ToJSON instance for SqlValue: " ++ show x
 
