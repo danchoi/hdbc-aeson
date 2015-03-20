@@ -17,7 +17,7 @@ executeJ stmt vs = do
     rows <- fetchAllRowsMap' stmt
     let result = fromJSON . toJSON $ rows
     case result of 
-      Error e -> error $ "Could not parse via JSON: " ++ e
+      Error e -> error $ "Database.HDBC.Aeson: Could not parse into JSON: " ++ e ++ "\nSqlValue: " ++ show rows
       Success x -> return x
 
 -- | A quick way to do a query and cast it to a FromJSON. 
