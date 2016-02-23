@@ -30,3 +30,20 @@ library
                      , vector
   -- hs-source-dirs:      
   default-language:    Haskell2010
+
+executable  mysqljson
+  build-depends:       base >=4.6 && <4.9
+                     , hdbc-aeson
+                     , HDBC >= 2.4.0.1
+                     , text
+                     , aeson >= 0.8
+                     , convertible
+                     , unordered-containers
+                     , scientific >= 0.3.3.0
+                     , vector
+                     , HDBC-mysql
+                     , bytestring
+  default-language:    Haskell2010
+  main-is:           Main.hs
+
+

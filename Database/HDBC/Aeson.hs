@@ -33,6 +33,7 @@ quickQueryJ conn query xs = do
 instance ToJSON SqlValue where
     toJSON (SqlByteString x) = String . T.decodeUtf8 $ x
     toJSON (SqlInt32 x) = Number $ fromIntegral x
+    toJSON (SqlInt64 x) = Number $ fromIntegral x
     toJSON (SqlInteger x) = Number $ fromIntegral  x
     toJSON (SqlRational x) = Number $ realToFrac x
     toJSON (SqlDouble x) = Number $ realToFrac x
